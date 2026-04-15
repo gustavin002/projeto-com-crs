@@ -19,6 +19,10 @@ public class FuncionarioService {
     
     public List<FuncionarioBean> lerTodos(){
         return repository.lerTodos();
-    }    
+    }
+    
+    public FuncionarioBean lerPorId(int id){
+        return repository.lerPorId(id);
+    }
     
 }
