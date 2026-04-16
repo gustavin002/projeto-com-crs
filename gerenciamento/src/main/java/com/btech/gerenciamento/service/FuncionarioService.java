@@ -25,4 +25,12 @@ public class FuncionarioService {
         return repository.lerPorId(id);
     }
     
+    public void editarFuncionario(FuncionarioBean funcionario){
+        repository.editar(funcionario);
+    }
+    
+    public void criarFuncionario(FuncionarioBean funcionario){
+        repository.criar(funcionario);
+}
+
 }

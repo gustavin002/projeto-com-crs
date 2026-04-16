@@ -3,36 +3,40 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Perfil do Funcionário</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <header>
+            <nav>
+                <a href="/funcionarios">Voltar</a>
+            </nav>
+        </header>
         <main>
-            <table> 
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Cargo</th>
-                    <th>Departamento</th>
-                    <th>E-mail</th>
-                    <th>Contratacao</th>
-                    <th>Acões</th>
-                </tr>
-                <tr th:each="funcionario : ${lerIds}">
-                    <td th:text="${funcionario.id}"></td>
-                    <td th:text="${funcionario.nome}"></td>
-                    <td th:text="${funcionario.cargo}"></td>
-                    <td th:text="${funcionario.departamento}"></td>
-                    <td th:text="${funcionario.email}"></td>
-                    <td th:text="${funcionario.dataContratacao}"></td>
-                    <td>
-                        <a th:href="@{/perfil(id=${funcionario.id})}">Editar</a>
-                    </td>
-                </tr>
-            </table>
-        </main>>
+            <h2>Editar Dados</h2>
+            <form th:action="@{/salvar}" th:object="${funcionario}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <label>Nome: </label>
+                <input type="text" th:field="*{nome}" />
+                <br /><br />
+                <label>Cargo: </label>
+                <input type="text" th:field="*{cargo}" />
+                <br /><br />
+                <label>Departamento: </label>
+                <input type="text" th:field="*{departamento}" />
+                <br /><br />
+                <label>E-mail: </label>
+                <input type="email" th:field="*{email}" />
+                <br /><br />
+                <label>Data de Contratação: </label>
+                <input type="date" th:field="*{dataContratacao}" />
+                <br /><br />
+                <button type="submit">Salvar</button>
+                
+            </form>
+        </main>
     </body>
 </html>

@@ -18,6 +18,7 @@ public class FuncionarioDAO {
     
     public List<FuncionarioBean> lerTodos(){
         List<FuncionarioBean> dados = new ArrayList();
+        
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -47,7 +48,8 @@ public class FuncionarioDAO {
     }
     
     public FuncionarioBean lerPorId (int id){
-         FuncionarioBean funcionario = new FuncionarioBean();
+        FuncionarioBean funcionario = new FuncionarioBean();
+         
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -72,4 +74,52 @@ public class FuncionarioDAO {
     }
         return funcionario;
 }
+    
+    public void editar (FuncionarioBean funcionario){
+   
+    try{
+        
+        Connection conn = Conexao.conectar();
+        PreparedStatement stmt = null;
+        
+        stmt = conn.prepareStatement ("UPDATE funcionario SET nome = ?, cargo = ?, departamento = ?, email = ?, data_contratacao = ? WHERE id = ?");
+        
+        stmt.setString(1, funcionario.getNome());
+        stmt.setString(2, funcionario.getCargo());
+        stmt.setString(3, funcionario.getDepartamento());
+        stmt.setString(4, funcionario.getEmail());
+        stmt.setDate(5, funcionario.getDataContratacao());
+        stmt.setInt(6, funcionario.getId());
+        
+        stmt.executeUpdate();
+        
+    } catch (SQLException e){
+        e.printStackTrace();
+}
+}
+    
+    public void criar (FuncionarioBean funcionario){
+    
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            
+            stmt = conn.prepareStatement ("INSERT INTO funcionario (nome, cargo, departamento, email, data_contratacao) values (?, ?, ?, ?, ?)");
+            
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCargo());
+            stmt.setString(3, funcionario.getDepartamento());
+            stmt.setString(4, funcionario.getEmail());
+            stmt.setDate(5, funcionario.getDataContratacao());
+        
+            
+            stmt.executeUpdate();
+            
+        } catch (SQLException e){
+        e.printStackTrace();
+}
+}
+    
+    
+    
 }
