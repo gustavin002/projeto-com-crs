@@ -29,10 +29,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <td th:text="${f.email}"></td>
                     <td th:text="${f.dataContratacao}"></td>
                     <td><a th:href="@{/perfil(id=${f.id})}">Editar</a></td>
-                    <br /><br />
-                    <a th:href="@{/criar(id=${f.id})}">Criar</a>
                 </tr>
             </table>
+            <a href="/criar-novo">Criar novo Funcionario</a>
+            
         </main>
     </body>
 </html>

@@ -38,6 +38,13 @@ private FuncionarioService service;
         return "perfil";
     }
     
+    @GetMapping("/criar-novo")
+    public String adicionarNovo(Model model){
+        FuncionarioBean funcionario = new FuncionarioBean();
+        model.addAttribute("funcionario", funcionario);
+        return "criar";
+    }
+    
      @PostMapping("/salvar")
      public String salvar (@ModelAttribute FuncionarioBean funcionario){
         service.editarFuncionario(funcionario);
